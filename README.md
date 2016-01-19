@@ -11,3 +11,10 @@ They already provide manz courses, and will provide many more courses, including
 
 ## Software instalation
 Go to the new webpage, software instalation, and fill the form.
+
+## Mogon
+Name derived from the Roman name for Mainz, *Mongutia*.
+- 500 nodes
+- 64 cores, with at least 128GiB RAM
+- Nodes connected with QDR (2.7 GB/s)
+- Parallel gtsf file system.
