@@ -62,3 +62,8 @@ cp -r /cluster/hpc_course/mogon-intro/* .
 cd mpi_example
 bsub -q hpckurs -n 4 -R 'span[ptile=2]' -Is time mpirun -np 4 ./mpi_pi 1000000000
 ```
+
+## Memory
+Memory is requested per job slot. The simplest way is `bsub -app Reserve10G`and `bapp` will list all the available pre-set memory reservations. Memory reserved per core. `-app` is just a short cut to putting memory requirements in the `bsub` command.
+
+Do not type `bjobs` very frequently in the command line because it will send a request to the entire system everytime. `bpeek jobid` will let you know the out.err of the system. Btw, I checked all jobs being run with `bjobs -u all | wc -l` and it's ~40000. This is a normal day at mogon. 
