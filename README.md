@@ -45,4 +45,20 @@ mogon.fs.zdv.uni-mainz is the dedicated file server. Use sFTP is faster and secu
 - LSF, IBM's
 - with Mogon2 it will chance.
 
-Test a jobs with `bsub -q hpckurs date` and the job output should be sent to your email. `bqueues -l short` will give details of the requirements for that queue. More than 64 cores we shoudl use `nodeshort` and `nodelong`. The maximum time limite is 5h in long, bz default and and 300MB by default. With `bsub -W 5:00` will reserve a specific time and can be longer than the 5 hours.  
+Test a jobs with `bsub -q hpckurs date` and the job output should be sent to your email. `bqueues -l short` will give details of the requirements for that queue. More than 64 cores we shoudl use `nodeshort` and `nodelong`. The maximum time limite is 5h in long, bz default and and 300MB by default. With `bsub -W 5:00` will reserve a specific time and can be longer than the 5 hours.
+
+`bsub -n 8 -R "span[tile=8]"` makes sure that all 8 cores are from the same computer node. 
+
+Some hands on examples:
+
+```bash
+module load mpi/intelmpi/5.1.079
+mkdir mogon-intro
+cd mogon-intro
+
+cp -r /cluster/hpc_course/mogon-intro/* .
+
+# let's calculate pi
+cd mpi_example
+bsub -q hpckurs -n 4 -R 'span[ptile=2]' -Is time mpirun -np 4 ./mpi_pi 1000000000
+```
