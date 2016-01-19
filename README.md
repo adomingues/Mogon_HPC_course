@@ -18,3 +18,24 @@ Name derived from the Roman name for Mainz, *Mongutia*.
 - 64 cores, with at least 128GiB RAM
 - Nodes connected with QDR (2.7 GB/s)
 - Parallel gtsf file system.
+
+## Logging in
+Enbale ssh fowarding in your computor
+ssh mogon
+
+Check the wiki for instructions.
+
+Once logged in, use the login node only to copy data and submit jobs. It is however ok to make simple tests, even in parallel.
+firefox --no-remote will load a webpage for Linux Computing with programs to download and manuals.
+
+## Directory structure
+Home directory should be used to store programs/scripts, shared data and binaries. Clean data regularly and tidy up.
+There is a regular backup in `/home/username` and `/home/username` and folders `temp` and `scratch`.
+
+*Bad ideas:*
+- use a million files
+- access many many files at the same time in the same directory
+
+Save save space and time with tar. `tar cf archive.tar directory` to pack, and `tar czf archive.tar directory` to pack and compress. To unpack use `c` instead of `z`.
+
+mogon.fs.zdv.uni-mainz is the dedicated file server. Use sFTP is faster and secure transfer - better than scp or rsync.
