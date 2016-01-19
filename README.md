@@ -41,7 +41,7 @@ Save save space and time with tar. `tar cf archive.tar directory` to pack, and `
 mogon.fs.zdv.uni-mainz is the dedicated file server. Use sFTP is faster and secure transfer - better than scp or rsync.
 
 
-## Scheduler
+## Scheduler and submmiting jobs
 - LSF, IBM's
 - with Mogon2 it will chance.
 
@@ -63,7 +63,28 @@ cd mpi_example
 bsub -q hpckurs -n 4 -R 'span[ptile=2]' -Is time mpirun -np 4 ./mpi_pi 1000000000
 ```
 
+Other options:
+- `-o joboutput.txt` will save stder/sdout and with `-N` it will still trigger an email. 
+- `-u some@mail.de` will send an email to another email address.
+- `-J jobname` is usefull to know what the job is when listed with `bjobs`.
+
+```bash
+cd mogon-intro
+cd pipe_bsub
+
+./pipe_and_compress.sh fastq
+```
+
+This is what we are doing:
+
+```bash
+
+```
+
+
 ## Memory
 Memory is requested per job slot. The simplest way is `bsub -app Reserve10G`and `bapp` will list all the available pre-set memory reservations. Memory reserved per core. `-app` is just a short cut to putting memory requirements in the `bsub` command.
 
-Do not type `bjobs` very frequently in the command line because it will send a request to the entire system everytime. `bpeek jobid` will let you know the out.err of the system. Btw, I checked all jobs being run with `bjobs -u all | wc -l` and it's ~40000. This is a normal day at mogon. 
+
+## Useful commands
+Do not type `bjobs` very frequently in the command line because it will send a request to the entire system everytime. `bpeek jobid` will let you know the out.err of the system. Btw, I checked all jobs being run with `bjobs -u all | wc -l` and it's ~40000. This is a normal day at mogon. `bhosts i0001` will tell you the status of a particular host. `lshosts | head` for another overview. `lsload a0001` for the current usage of a host. *Important*, `btop jobid` and `bbot jobid` will put a job at the top of bottom of your job queue. It should not be used very frequentely though since it takes resources. `bkill jobid` will kill the job (probably). `bmod` is a fairly complex command that allows changing of pending commands (alter memory requirements for instance).  
