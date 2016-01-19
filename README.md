@@ -75,12 +75,6 @@ cd pipe_bsub
 ./pipe_and_compress.sh fastq
 ```
 
-This is what we are doing:
-
-```bash
-
-```
-
 
 ## Memory
 Memory is requested per job slot. The simplest way is `bsub -app Reserve10G`and `bapp` will list all the available pre-set memory reservations. Memory reserved per core. `-app` is just a short cut to putting memory requirements in the `bsub` command.
@@ -88,3 +82,15 @@ Memory is requested per job slot. The simplest way is `bsub -app Reserve10G`and 
 
 ## Useful commands
 Do not type `bjobs` very frequently in the command line because it will send a request to the entire system everytime. `bpeek jobid` will let you know the out.err of the system. Btw, I checked all jobs being run with `bjobs -u all | wc -l` and it's ~40000. This is a normal day at mogon. `bhosts i0001` will tell you the status of a particular host. `lshosts | head` for another overview. `lsload a0001` for the current usage of a host. *Important*, `btop jobid` and `bbot jobid` will put a job at the top of bottom of your job queue. It should not be used very frequentely though since it takes resources. `bkill jobid` will kill the job (probably). `bmod` is a fairly complex command that allows changing of pending commands (alter memory requirements for instance).  
+
+
+## RAM disk
+
+
+```bash
+cd mogon-intro
+cd ramdisk
+bsub < concat_remote.sh
+```
+
+In this script some files are copied to RAM and executed there.
