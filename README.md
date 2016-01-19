@@ -39,3 +39,10 @@ There is a regular backup in `/home/username` and `/home/username` and folders `
 Save save space and time with tar. `tar cf archive.tar directory` to pack, and `tar czf archive.tar directory` to pack and compress. To unpack use `c` instead of `z`.
 
 mogon.fs.zdv.uni-mainz is the dedicated file server. Use sFTP is faster and secure transfer - better than scp or rsync.
+
+
+## Scheduler
+- LSF, IBM's
+- with Mogon2 it will chance.
+
+Test a jobs with `bsub -q hpckurs date` and the job output should be sent to your email.
